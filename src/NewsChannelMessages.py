@@ -65,7 +65,7 @@ async def main(phone):
     limit = 100
     all_messages = []
     total_messages = 0
-    total_count_limit = 2000
+    total_count_limit = 1500
 
     while True:
         print("Current Channel 1 Offset ID is:", offset_id, "; Total Messages:", total_messages)
@@ -99,13 +99,116 @@ async def main(phone):
     my_channel = await client.get_entity(entity)
 
     offset_id = 0
-    limit = 100
-    all_messages = []
-    total_messages = 7000
-    total_count_limit = 14000
+    total_count_limit = 3000
 
     while True:
         print("Current Channel 2 Offset ID is:", offset_id, "; Total Messages:", total_messages+7000)
+        history = await client(GetHistoryRequest(
+            peer=my_channel,
+            offset_id=offset_id,
+            offset_date=None,
+            add_offset=0,
+            limit=limit,
+            max_id=0,
+            min_id=0,
+            hash=0
+        ))
+        if not history.messages:
+            break
+        messages = history.messages
+        for message in messages:
+            all_messages.append(message.to_dict())
+        offset_id = messages[len(messages) - 1].id
+        total_messages = len(all_messages)
+        if total_count_limit != 0 and total_messages >= total_count_limit:
+            break
+
+
+    user_input_channel = "https://t.me/akhbarefori"
+
+    if user_input_channel.isdigit():
+        entity = PeerChannel(int(user_input_channel))
+    else:
+        entity = user_input_channel
+
+    my_channel = await client.get_entity(entity)
+
+    offset_id = 0
+    total_count_limit = 4500
+
+    while True:
+        print("Current Channel 3 Offset ID is:", offset_id, "; Total Messages:", total_messages+7000)
+        history = await client(GetHistoryRequest(
+            peer=my_channel,
+            offset_id=offset_id,
+            offset_date=None,
+            add_offset=0,
+            limit=limit,
+            max_id=0,
+            min_id=0,
+            hash=0
+        ))
+        if not history.messages:
+            break
+        messages = history.messages
+        for message in messages:
+            all_messages.append(message.to_dict())
+        offset_id = messages[len(messages) - 1].id
+        total_messages = len(all_messages)
+        if total_count_limit != 0 and total_messages >= total_count_limit:
+            break
+
+    user_input_channel = "https://t.me/yjcnewschannel"
+
+    if user_input_channel.isdigit():
+        entity = PeerChannel(int(user_input_channel))
+    else:
+        entity = user_input_channel
+
+    my_channel = await client.get_entity(entity)
+
+    offset_id = 0
+    total_count_limit = 6000
+
+    while True:
+        print("Current Channel 4 Offset ID is:", offset_id, "; Total Messages:", total_messages+7000)
+        history = await client(GetHistoryRequest(
+            peer=my_channel,
+            offset_id=offset_id,
+            offset_date=None,
+            add_offset=0,
+            limit=limit,
+            max_id=0,
+            min_id=0,
+            hash=0
+        ))
+        if not history.messages:
+            break
+        messages = history.messages
+        for message in messages:
+            all_messages.append(message.to_dict())
+        offset_id = messages[len(messages) - 1].id
+        total_messages = len(all_messages)
+        if total_count_limit != 0 and total_messages >= total_count_limit:
+            break
+
+    with open('News_channel_messages.json', 'w') as outfile:
+        json.dump(all_messages, outfile, cls=DateTimeEncoder)
+
+    user_input_channel = "https://t.me/parsinehnews"
+
+    if user_input_channel.isdigit():
+        entity = PeerChannel(int(user_input_channel))
+    else:
+        entity = user_input_channel
+
+    my_channel = await client.get_entity(entity)
+
+    offset_id = 0
+    total_count_limit = 7500
+
+    while True:
+        print("Current Channel 5 Offset ID is:", offset_id, "; Total Messages:", total_messages+7000)
         history = await client(GetHistoryRequest(
             peer=my_channel,
             offset_id=offset_id,
