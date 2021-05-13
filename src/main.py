@@ -526,22 +526,22 @@ for item in TF_IDF_sport_list:
     inital_data.write('\n')
 inital_data.close()
 
-Counter3 = Counter(cleaned_news_words)
+# Counter3 = Counter(cleaned_news_words)
 
-most_occur = Counter3.most_common(len(cleaned_news_words))
+# most_occur = Counter3.most_common(len(cleaned_news_words))
 
-most_common_news_keys = []
+# most_common_news_keys = []
 
-temp = 1
-for (key, value) in most_occur:
-    most_common_news_values.append(value)
-    most_common_news_keys.append(temp)
-    temp += 1
+# temp = 1
+# for (key, value) in most_occur:
+#     most_common_news_values.append(value)
+#     most_common_news_keys.append(temp)
+#     temp += 1
 
-plt.xlabel('word index')
-plt.ylabel('Frequency')
-plt.bar(most_common_news_keys, most_common_news_values)
-plt.show()
+# plt.xlabel('word index')
+# plt.ylabel('Frequency')
+# plt.bar(most_common_news_keys, most_common_news_values)
+# plt.show()
 
 
 
