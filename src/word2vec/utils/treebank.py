@@ -6,7 +6,7 @@ import numpy as np
 import os
 import random
 
-class StanfordSentiment:
+class TeleSentiment:
     def __init__(self, path=None, tablesize = 1000000, label="Sport"):
         if not path:
             path = "../../data"
