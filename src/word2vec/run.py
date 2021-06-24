@@ -7,6 +7,7 @@ import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
 import time
+import json
 
 from word2vec import *
 from sgd import *
@@ -17,25 +18,6 @@ assert sys.version_info[0] == 3
 assert sys.version_info[1] >= 5
 
 labels=["news","sport"]
-hoghoghi_sent=[]
-keyfari_sent=[]
-# df = pd.read_excel('../../data/CLEAN/Clean_UTF8.xlsx')
-# df_sent = df['text']
-# df_label = df['class']
-# with open("../../data/CLEAN/CLEAN_UTF8_all.txt",'w', encoding="utf-8") as f:
-#     for i in df_sent:
-#         f.write(i)
-#         f.write("\n")
-# with open("../../data/CLEAN/CLEAN_UTF8_keyfari.txt",'w', encoding="utf-8") as f:
-#     for i in range(len(df_sent)):
-#         if df_label[i] == "keyfari":
-#             f.write(df_sent[i])
-#             f.write("\n")
-# with open("../../data/CLEAN/CLEAN_UTF8_hoghoghi.txt",'w', encoding="utf-8") as f:
-#     for i in range(len(df_sent)):
-#         if df_label[i] == "hoghoghi":
-#             f.write(df_sent[i])
-#             f.write("\n")
 
 # Reset the random seed to make sure that everyone gets the same results
 random.seed(314)
@@ -75,31 +57,8 @@ for label in labels:
         (wordVectors[:nWords,:], wordVectors[nWords:,:]),
         axis=0)
 
-    with open('../../model/word2vec/' + label + '.word2vec.npy', 'wb') as f:
+    with open('../../models/word2vec/' + label + '.word2vec.npy', 'wb') as f:
         np.save(f, wordVectors)
-    a_file = open('../../model/word2vec/' + label + '.word2vec.tokens.json', "w")
+    a_file = open('../../models/word2vec/' + label + '.word2vec.tokens.json', "w")
     json.dump(tokens, a_file)
     a_file.close()
-
-
-# visualizeWords = [
-#     "great", "cool", "brilliant", "wonderful", "well", "amazing",
-#     "worth", "sweet", "enjoyable", "boring", "bad", "dumb",
-#     "annoying", "female", "male", "queen", "king", "man", "woman", "rain", "snow",
-#     "hail", "coffee", "tea"]
-
-# visualizeIdx = [tokens[word] for word in visualizeWords]
-# visualizeVecs = wordVectors[visualizeIdx, :]
-# temp = (visualizeVecs - np.mean(visualizeVecs, axis=0))
-# covariance = 1.0 / len(visualizeIdx) * temp.T.dot(temp)
-# U,S,V = np.linalg.svd(covariance)
-# coord = temp.dot(U[:,0:2])
-
-# for i in range(len(visualizeWords)):
-#     plt.text(coord[i,0], coord[i,1], visualizeWords[i],
-#         bbox=dict(facecolor='green', alpha=0.1))
-
-# plt.xlim((np.min(coord[:,0]), np.max(coord[:,0])))
-# plt.ylim((np.min(coord[:,1]), np.max(coord[:,1])))
-
-# plt.savefig('word_vectors.png')
