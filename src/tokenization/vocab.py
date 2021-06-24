@@ -211,8 +211,8 @@ if __name__ == '__main__':
             if not os.path.exists("./datasets/model-"+str(vs)+"-"+str(i)):
                 os.mkdir("./datasets/model-"+str(vs)+"-"+str(i))
             
-            x_train_path = "./datasets/text_train_"+str(i)+".txt"
-            x_test_path = "./datasets/text_test_"+str(i)+".txt"
+            x_train_path = "./datasets/train_text_"+str(i)+".txt"
+            x_test_path = "./datasets/test_text_"+str(i)+".txt"
             sents = get_vocab_list(x_train_path, source="./datasets/model-"+str(vs)+"-"+str(i)+"/"+"model-"+str(vs)+"-"+str(i), vocab_size=vs)
             vocab = Vocab.build(sents)
             vocab.save("./datasets/model-"+str(vs)+"-"+str(i)+"/vocab_file.json")
@@ -229,18 +229,7 @@ if __name__ == '__main__':
                 f1.write("\n")
     
     vocab_size = 6121
-    sents = get_vocab_list("../../data/clean_news_senteces.txt", source="../../models/tokenization/model-"+str(vocab_size), vocab_size=vocab_size)
+    sents = get_vocab_list("../../data/clean_all_senteces.txt", source="../../models/tokenization/model-"+str(vocab_size), vocab_size=vocab_size)
     vocab = Vocab.build(sents)
     vocab.save("../../models/tokenization/vocab-file-"+str(vocab_size)+".json")
-    
-    # print('read in source sentences: %s' % args['--train-src'])
-    # print('read in target sentences: %s' % args['--train-tgt'])
 
-    # src_sents = get_vocab_list(args['--train-src'], source='src', vocab_size=21000)         
-    # tgt_sents = get_vocab_list(args['--train-tgt'], source='tgt', vocab_size=8000)
-    # vocab = Vocab.build(src_sents, tgt_sents)
-    # print('generated vocabulary, source %d words, target %d words' % (len(src_sents), len(tgt_sents)))
-
-
-    # vocab.save(args['VOCAB_FILE'])
-    # print('vocabulary saved to %s' % args['VOCAB_FILE'])
