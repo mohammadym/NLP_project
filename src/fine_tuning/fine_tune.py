@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 from transformers import DataCollatorForLanguageModeling
 
 from berm_lm import *
-from src.fine_tuning.dataset import MaskedLMDataset
+from dataset import *
 
 
 def fine_tune(class_name, json_file, tokenizer, epochs, batch_size, save_url=None, mlm_prob=0.25, use_gpu=True):
