@@ -1,9 +1,11 @@
 import pytorch_lightning as pl
 import torch
 from src.fine_tuning.bert_lm import BertLM
-from src.fine_tuning.dataset import MaskedLMDataset
-from transformers import DataCollatorForLanguageModeling
 from torch.utils.data import DataLoader
+from transformers import DataCollatorForLanguageModeling
+
+from berm_lm import *
+from src.fine_tuning.dataset import MaskedLMDataset
 from src.logger.logger import log
 
 

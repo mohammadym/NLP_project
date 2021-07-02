@@ -1,11 +1,12 @@
 # from src.constants import MASK, SEP, BERT_TOKENIZER_CACHE_DIR, BERT_VERSION
-import torch
-import numpy as np
-import time
 import math
-from src.fine_tuning.bert_lm import BertPred
+import time
+
+import numpy as np
+import torch
 from transformers import BertTokenizer
-from src.logger.logger import log
+
+# from src.logger.logger import log
 
 
 def tokenize_batch(batch, tokenizer):
@@ -88,7 +89,7 @@ def generate(n_samples, class_name, model, seed_text="[CLS]", batch_size=1, max_
 
         if (batch_n + 1) % print_every == 0:
             print("Finished batch %d in %.3fs" % (batch_n + 1, time.time() - start_time))
-            log("Finished batch %d in %.3fs" % (batch_n + 1, time.time() - start_time), "fine_tuning")
+            # log("Finished batch %d in %.3fs" % (batch_n + 1, time.time() - start_time), "fine_tuning")
             start_time = time.time()
 
         sentences += batch
