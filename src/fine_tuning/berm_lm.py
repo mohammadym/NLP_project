@@ -1,8 +1,6 @@
 import pytorch_lightning as pl
 from transformers import BertForMaskedLM, AdamW
-# from src.constants import BERT_RAW_MODEL_CACHE_DIR, BERT_VERSION
 import torch.nn as nn
-from src.logger.logger import log
 import torch
 
 
@@ -31,7 +29,6 @@ class BertLM(pl.LightningModule):
         n_batch = len(outputs)
         for i in range(n_batch):
             mean_loss += outputs[i]['loss'].cpu().numpy() / n_batch
-        log(f"End of epoch {self.epoch_number} with mean loss '{mean_loss}' on label {self.class_name}.", "fine_tuning")
         self.epoch_number += 1
 
     def configure_optimizers(self):
