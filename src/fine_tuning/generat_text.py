@@ -4,8 +4,6 @@ import time
 import numpy as np
 import torch
 from transformers import BertTokenizer
-from . import berm_lm
-from berm_lm import *
 
 
 def tokenize_batch(batch, tokenizer):

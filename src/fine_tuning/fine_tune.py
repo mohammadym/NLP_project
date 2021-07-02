@@ -1,6 +1,5 @@
 import pytorch_lightning as pl
 import torch
-from . import berm_lm
 from torch.utils.data import DataLoader
 from transformers import DataCollatorForLanguageModeling
 
