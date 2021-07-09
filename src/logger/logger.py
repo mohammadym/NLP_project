@@ -10,6 +10,8 @@ def log(message, task):
         url = "../../logs/language_model.log"
     if task == "fine_tuning":
         url = "../../logs/fine_tuning.log"
+    if task == "parsing":
+        url = "../../logs/parsing.log"
     if url is None:
         return
     if not os.path.exists(url):
