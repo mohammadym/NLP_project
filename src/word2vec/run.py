@@ -29,8 +29,8 @@ labels = ['news', 'sport']
 
 # Reset the random seed to make sure that everyone gets the same results
 random.seed(314)
-if not os.path.exists("models/word2vec"):
-    os.mkdir("models/word2vec")
+# if not os.path.exists("../models/word2vec"):
+#     os.mkdir("../models/word2vec")
 
 
 def word2vec_model(label):
