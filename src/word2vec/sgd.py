@@ -16,14 +16,14 @@ def load_saved_params(label):
     iteration start.
     """
     st = 0
-    for f in glob.glob("models/word2vec/saved_params*.npy"):
+    for f in glob.glob("../../models/word2vec/saved_params*.npy"):
         if label in f:
             iter = int(op.splitext(op.basename(f))[0].split("_")[2])
             if iter > st:
                 st = iter
     if st > 0:
-        params_file = "models/word2vec/saved_params{}_{}.npy".format(label, st)
-        state_file = "models/word2vec/saved_state{}_{}.pickle".format(label, st)
+        params_file = "../../models/word2vec/saved_params{}_{}.npy".format(label, st)
+        state_file = "../../models/word2vec/saved_state{}_{}.pickle".format(label, st)
         params = np.load(params_file)
         with open(state_file, "rb") as f:
             state = pickle.load(f)
@@ -33,8 +33,8 @@ def load_saved_params(label):
 
 
 def save_params(iter, params,label):
-    params_file = "models/word2vec/saved_params{}_{}.npy".format(label, iter)
-    state_file = "models/word2vec/saved_state{}_{}.pickle".format(label, iter)
+    params_file = "../../models/word2vec/saved_params{}_{}.npy".format(label, iter)
+    state_file = "../../models/word2vec/saved_state{}_{}.pickle".format(label, iter)
     np.save(params_file, params)
     with open(state_file, "wb") as f:
         pickle.dump(random.getstate(), f)
