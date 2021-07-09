@@ -19,7 +19,6 @@ from tqdm import tqdm
 
 from parser_model import ParserModel
 from utils.parser_utils import minibatches, load_and_preprocess_data, AverageMeter
-from ... import src
 from src.logger.logger import log
 
 parser = argparse.ArgumentParser(description='Train neural dependency parser in pytorch')
@@ -57,7 +56,7 @@ def train(parser, train_data, dev_data, output_path, batch_size=1024, n_epochs=1
     optimizer = torch.optim.Adam(parser.model.parameters(), lr=lr)
     loss_func = torch.nn.CrossEntropyLoss(reduction='mean')
     ### END YOUR CODE
-    log(f"Parsing sentence {n_epochs} epochs", "parsing")
+    log(f"Parsing sentences for labels", "parsing")
     for epoch in range(n_epochs):
         print("Epoch {:} out of {:}".format(epoch + 1, n_epochs))
         dev_UAS = train_for_epoch(parser, train_data, dev_data, optimizer, loss_func, batch_size)
