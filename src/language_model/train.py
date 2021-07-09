@@ -7,7 +7,7 @@ from torch import nn, optim
 from torch.utils.data import DataLoader
 from model import Model
 from dataset import Dataset
-from src.logger.logger import log
+# from src.logger.logger import log
 
 
 def train(dataset, model, device, args):
@@ -16,7 +16,7 @@ def train(dataset, model, device, args):
     dataloader = DataLoader(dataset, batch_size=args.batch_size)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
-    log(f"Started training on label for {args.max_epochs} epochs.", "language_model")
+    # log(f"Started training on label for {args.max_epochs} epochs.", "language_model")
     for epoch in range(args.max_epochs):
         state_h, state_c = model.init_state(args.sequence_length)
         state_h.to(device)

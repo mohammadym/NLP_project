@@ -1,5 +1,5 @@
 import os
-from src.logger.logger import log
+# from src.logger.logger import log
 
 labels = ['sport', 'news']
 
@@ -21,6 +21,6 @@ sentences = ['انسان باید',
              ]
 
 for label in labels:
-    log(f"Generating sentences for {label} label", "language_model")
+    # log(f"Generating sentences for {label} label", "language_model")
     for sent in sentences:
         os.system("python predict.py --char {0} --input {1}".format(label, sent))

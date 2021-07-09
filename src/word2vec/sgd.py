@@ -38,7 +38,7 @@ def save_params(iter, params, label):
     params_file = "../../models/word2vec/saved_params{}_{}.npy".format(label, iter)
     state_file = "../../models/word2vec/saved_state{}_{}.pickle".format(label, iter)
     np.save(params_file, params)
-    log(f"Saved model to {params_file}", "word2vec")
+    # log(f"Saved model to {params_file}", "word2vec")
     with open(state_file, "wb") as f:
         pickle.dump(random.getstate(), f)
 
@@ -64,7 +64,7 @@ def sgd(f, x0, step, iterations, postprocessing=None, useSaved=False,
     Return:
     x -- the parameter value after SGD finishes
     """
-    log(f"[word2vec] Starting training on {label}.", 'word2vec')
+    # log(f"[word2vec] Starting training on {label}.", 'word2vec')
     # Anneal learning rate every several iterations
     ANNEAL_EVERY = 20000
     if useSaved:
@@ -107,5 +107,5 @@ def sgd(f, x0, step, iterations, postprocessing=None, useSaved=False,
 
         if iter % ANNEAL_EVERY == 0:
             step *= 0.5
-    log(f"Finished traingin on class {label} with {iterations} iters. Loss: {exploss}", "word2vec")
+    # log(f"Finished traingin on class {label} with {iterations} iters. Loss: {exploss}", "word2vec")
     return x
