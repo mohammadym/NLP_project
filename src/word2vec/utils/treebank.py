@@ -8,7 +8,7 @@ import random
 class TeleText:
     def __init__(self, path=None, tablesize=1000000, label=None):
         if not path:
-            path = "data"
+            path = "../../data"
         self.path = path
         self.tablesize = tablesize
         self.label = label

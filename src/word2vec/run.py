@@ -29,8 +29,8 @@ labels = ['news', 'sport']
 
 # Reset the random seed to make sure that everyone gets the same results
 random.seed(314)
-# if not os.path.exists("../models/word2vec"):
-#     os.mkdir("../models/word2vec")
+if not os.path.exists("../../models/word2vec"):
+    os.mkdir("../../models/word2vec")
 
 
 def word2vec_model(label):
@@ -74,7 +74,7 @@ for label in labels:
     print(label)
     word2vect_vectors, tokens, wordVectors = word2vec_model(label)
 
-    with open('reports/word2vec/top_{}_words.txt'.format(label), 'r') as top_file:
+    with open('../../reports/word2vec/top_{}_words.txt'.format(label), 'r') as top_file:
         visualizeWords = [word.replace('\n', '') for word in top_file.readlines()]
     visualizeIdx = []
     mywords = []
@@ -97,7 +97,7 @@ for label in labels:
     plt.xlim((np.min(coord[:, 0]), np.max(coord[:, 0])))
     plt.ylim((np.min(coord[:, 1]), np.max(coord[:, 1])))
 
-    if not os.path.exists('reports/word2vec'):
-        os.mkdir('reports/word2vec')
+    if not os.path.exists('../../reports/word2vec'):
+        os.mkdir('../../reports/word2vec')
     print('saving ,', label)
-    plt.savefig('reports/word2vec/word_{}_vectors.png'.format(label))
+    plt.savefig('../../reports/word2vec/word_{}_vectors.png'.format(label))
