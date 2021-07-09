@@ -1,19 +1,18 @@
-from src.constants import WORD2VEC_LOG_FILE, LANGUAGE_MODEL_LOG_FILE, FINETUNE_LOG_FILES
 import os
 import datetime
 
 
 def log(message, task):
     url = None
-    if (task == "word2vec"):
-        url = WORD2VEC_LOG_FILE
-    if (task == "language_model"):
-        url = LANGUAGE_MODEL_LOG_FILE
-    if (task == "fine_tuning"):
-        url = FINETUNE_LOG_FILES
+    if task == "word2vec":
+        url = "../../logs/word2vec.log"
+    if task == "language_model":
+        url = "../../logs/language_model.log"
+    if task == "fine_tuning":
+        url = "../../logs/fine_tuning.log"
     if url is None:
         return
-    if (not os.path.exists(url)):
+    if not os.path.exists(url):
         os.makedirs('logs', exist_ok=True)
         with open(url, 'w') as f:
             f.write(f"[{datetime.datetime.now()}] {message}\n")
