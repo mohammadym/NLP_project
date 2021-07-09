@@ -19,6 +19,7 @@ from tqdm import tqdm
 
 from parser_model import ParserModel
 from utils.parser_utils import minibatches, load_and_preprocess_data, AverageMeter
+from ... import src
 from src.logger.logger import log
 
 parser = argparse.ArgumentParser(description='Train neural dependency parser in pytorch')
