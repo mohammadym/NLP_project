@@ -54,8 +54,9 @@ if not os.path.exists("data/data_sentences.txt"):
 if not os.path.exists("models/word2vec"):
     os.mkdir("models/word2vec")
 
+
 def word2vec_model(label):
-    dataset = BBCNews(label=label)
+    dataset = TeleText(label=label)
     tokens = dataset.tokens()
     nWords = len(tokens)
 
@@ -77,7 +78,7 @@ def word2vec_model(label):
     wordVectors = sgd(
         lambda vec: word2vec_sgd_wrapper(skipgram, tokens, vec, dataset, C,
                                          negSamplingLossAndGradient),
-        wordVectors, 0.3, 40000, None, True, PRINT_EVERY=10,label=label)
+        wordVectors, 0.3, 40000, None, True, PRINT_EVERY=10, label=label)
     # Note that normalization is not called here. This is not a bug,
     # normalizing during training loses the notion of length.
 
@@ -90,9 +91,10 @@ def word2vec_model(label):
         axis=0)
     return wordVectors, tokens, wordVectors
 
+
 for label in labels:
     print(label)
-    word2vect_vectors, tokens, wordVectors=word2vec_model(label)
+    word2vect_vectors, tokens, wordVectors = word2vec_model(label)
     # with open('models/word2vec/{}.wordtovec.npy', 'a') as outfile:
     #     np.save(outfile, word2vect_vectors)
 
@@ -102,8 +104,8 @@ for label in labels:
     mywords = []
     for word in visualizeWords:
         if word in tokens:
-             visualizeIdx.append(tokens[word])
-             mywords.append(word)
+            visualizeIdx.append(tokens[word])
+            mywords.append(word)
     visualizeWords = mywords
     visualizeIdx = visualizeIdx[:15]
     visualizeWords = visualizeWords[:15]
@@ -113,7 +115,7 @@ for label in labels:
     U, S, V = np.linalg.svd(covariance)
     coord = temp.dot(U[:, 0:2])
     for i in range(len(visualizeIdx)):
-        plt.text(coord[i, 0], coord[i, 1],get_display( arabic_reshaper.reshape('{}'.format(visualizeWords[i]))),
+        plt.text(coord[i, 0], coord[i, 1], get_display(arabic_reshaper.reshape('{}'.format(visualizeWords[i]))),
                  bbox=dict(facecolor='green', alpha=0.1))
 
     plt.xlim((np.min(coord[:, 0]), np.max(coord[:, 0])))

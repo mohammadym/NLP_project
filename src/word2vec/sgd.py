@@ -9,6 +9,7 @@ import random
 import numpy as np
 import os.path as op
 
+
 def load_saved_params(label):
     """
     A helper function that loads previously saved parameters and resets
@@ -18,7 +19,7 @@ def load_saved_params(label):
     for f in glob.glob("models/word2vec/saved_params*.npy"):
         if label in f:
             iter = int(op.splitext(op.basename(f))[0].split("_")[2])
-            if (iter > st):
+            if iter > st:
                 st = iter
     if st > 0:
         params_file = "models/word2vec/saved_params{}_{}.npy".format(label, st)
