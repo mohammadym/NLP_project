@@ -5,7 +5,7 @@ import csv
 
 import numpy as np
 
-from utils.treebank import BBCNews
+from utils.treebank import TeleText
 import matplotlib
 
 matplotlib.use('agg')
