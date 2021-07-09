@@ -27,30 +27,8 @@ assert sys.version_info[1] >= 5
 labels = ['news', 'sport']
 
 
-def extract_sentences():
-    sent_dict = {}
-    for label in labels:
-        sent_dict[label] = []
-    base_path = 'data/data_clean.csv'
-    save_path = 'data/data_sentences'
-    all_text = []
-    with open(base_path, 'r') as f:
-        spam_reader = csv.reader(f, delimiter=',', quotechar='|')
-        for row in spam_reader:
-            if row[-3] != 'title':
-                sent_dict[row[-3]].append(row[-2] + row[-1] + '\n')
-                all_text.append(row[-2] + row[-1] + '\n')
-    with open(save_path + '.txt', 'a') as out_file:
-        out_file.writelines(all_text)
-    for label in labels:
-        with open(save_path + '_' + label + '.txt', 'a')as label_file:
-            label_file.writelines(sent_dict[label])
-
-
 # Reset the random seed to make sure that everyone gets the same results
 random.seed(314)
-if not os.path.exists("data/data_sentences.txt"):
-    extract_sentences()
 if not os.path.exists("models/word2vec"):
     os.mkdir("models/word2vec")
 
@@ -95,8 +73,6 @@ def word2vec_model(label):
 for label in labels:
     print(label)
     word2vect_vectors, tokens, wordVectors = word2vec_model(label)
-    # with open('models/word2vec/{}.wordtovec.npy', 'a') as outfile:
-    #     np.save(outfile, word2vect_vectors)
 
     with open('reports/word2vec/top_{}_words.txt'.format(label), 'r') as top_file:
         visualizeWords = [word.replace('\n', '') for word in top_file.readlines()]
